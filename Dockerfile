@@ -1,11 +1,11 @@
-FROM python:3.14-slim
+FROM registry.suse.com/bci/python:3.13
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    libpango-1.0-0 \
-    libpangoft2-1.0-0 \
-    libcairo2 \
-    libgdk-pixbuf-2.0-0 \
-    && rm -rf /var/lib/apt/lists/*
+RUN zypper --non-interactive refresh \
+    && zypper --non-interactive install --no-recommends \
+        libpango-1_0-0 \
+        libcairo2 \
+        libgdk_pixbuf-2_0-0 \
+    && zypper clean --all
 
 WORKDIR /opt/suse-security-report
 

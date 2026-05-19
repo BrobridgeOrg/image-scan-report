@@ -61,7 +61,7 @@ podman save suse-security-report:0.1.0 -o suse-security-report.tar
 podman load -i suse-security-report.tar
 ```
 
-Base image 為 `python:3.14-slim`（Debian trixie）。容器內路徑遵循 Linux FHS：
+Base image 為 `registry.suse.com/bci/python:3.13`（SUSE BCI）。容器內路徑遵循 Linux FHS：
 
 | 路徑 | 用途 |
 |---|---|
