@@ -5,7 +5,7 @@
 ## 目錄結構
 
 ```
-report/
+.
 ├── main.py                   # 主程式
 ├── requirements.txt          # Python 相依套件
 ├── Dockerfile
@@ -32,7 +32,7 @@ pip install -r requirements.txt
 **本地執行：**
 
 ```bash
-python main.py -i scan_result.json -o report.pdf
+python3 main.py -i scan_result.json -o report.pdf
 ```
 
 **容器執行（掛載當前目錄至 `/mnt`）：**
@@ -51,8 +51,8 @@ podman run --rm -v $(pwd):/mnt suse-security-report:0.1.0
 ## 容器建置與交付
 
 ```bash
-# 建置（從 pipeline/ 根目錄執行）
-podman build -t suse-security-report:0.1.0 report/
+# 建置
+podman build -t suse-security-report:0.1.0 .
 
 # Air-gap 打包
 podman save suse-security-report:0.1.0 -o suse-security-report.tar
