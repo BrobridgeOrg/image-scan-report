@@ -5,6 +5,8 @@ RUN zypper --non-interactive refresh \
         libpango-1_0-0 \
         libcairo2 \
         libgdk_pixbuf-2_0-0 \
+        liberation-fonts \
+    && fc-cache -f \
     && zypper clean --all
 
 WORKDIR /opt/suse-security-report
