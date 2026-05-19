@@ -1,0 +1,58 @@
+<div class="cover">
+<p class="cover-brand">SUSE Security</p>
+<p class="cover-title">Image Scan Report</p>
+<div class="cover-rule"></div>
+<p class="cover-sub">{{ repository }}:{{ tag }}</p>
+<p class="cover-sub">{{ scan_date }}</p>
+</div>
+
+# Image Scan Report
+
+## Image Information
+
+| Field | Value |
+|-------|-------|
+| Registry | {{ registry }} |
+| Repository | {{ repository }} |
+| Tag | {{ tag }} |
+| Image ID | {{ image_id }} |
+| Base OS | {{ base_os }} |
+| Size | {{ size_mb }} MB |
+| Digest | {{ digest }} |
+| Scanned At | {{ created_at }} |
+| CVE DB Version | {{ cvedb_version }} (updated: {{ cvedb_create_time }}) |
+
+## Summary
+
+| Severity | Count |
+|----------|-------|
+| High     | {{ cve_high | length }} |
+| Medium   | {{ cve_medium | length }} |
+| Low      | {{ cve_low | length }} |
+| **Total** | **{{ vulnerabilities | length }}** |
+
+## Vulnerabilities
+
+{% if vulnerabilities %}
+| CVE ID | Severity | Score (v3) | Package | Version | Fixed In |
+|--------|----------|-----------|---------|---------|----------|
+{% for v in vulnerabilities %}
+| {{ v.name }} | {{ v.severity }} | {{ v.score_v3 }} | {{ v.package_name }} | {{ v.package_version }} | {{ v.fixed_version }} |
+{% endfor %}
+
+### Details
+
+{% for v in vulnerabilities %}
+#### {{ v.name }}
+
+- **Severity**: {{ v.severity }} (CVSS v3: {{ v.score_v3 }})
+- **Package**: {{ v.package_name }} `{{ v.package_version }}` → `{{ v.fixed_version }}`
+- **File**: `{{ v.file_name }}`
+- **Reference**: {{ v.link }}
+
+{{ v.description | e }}
+
+{% endfor %}
+{% else %}
+No vulnerabilities found.
+{% endif %}
