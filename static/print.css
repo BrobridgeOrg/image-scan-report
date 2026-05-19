@@ -40,7 +40,7 @@
 }
 
 body {
-    font-family: "DejaVu Serif", Georgia, serif;
+    font-family: "SUSE", sans-serif;
     font-size: 11pt;
     color: #1a1a1a;
     margin: 0;
@@ -111,6 +111,6 @@ li {
 }
 
 code {
-    font-family: "DejaVu Sans Mono", "Courier New", monospace;
+    font-family: "SUSE", "Courier New", monospace;
     font-size: 9pt;
 }

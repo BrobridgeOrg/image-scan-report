@@ -5,7 +5,7 @@ RUN zypper --non-interactive refresh \
         libpango-1_0-0 \
         libcairo2 \
         libgdk_pixbuf-2_0-0 \
-        dejavu-fonts \
+        suse-fonts \
     && fc-cache -f \
     && zypper clean --all
 
