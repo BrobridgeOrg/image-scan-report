@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import argparse
 import json
-from datetime import date
 from pathlib import Path
 
 import markdown
@@ -31,7 +30,7 @@ def extract_context(data: dict) -> dict:
         "digest": report.get("digest", ""),
         "size_mb": round(report.get("size", 0) / 1_048_576, 1),
         "created_at": report.get("created_at", ""),
-        "report_date": date.today().isoformat(),
+        "scan_date": report.get("created_at", "")[:10],
         "cvedb_version": report.get("cvedb_version", ""),
         "cvedb_create_time": report.get("cvedb_create_time", ""),
         # vulnerabilities (sorted High → Medium → Low)
