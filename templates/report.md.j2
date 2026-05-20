@@ -2,7 +2,6 @@
 <p class="cover-brand">SUSE Security</p>
 <p class="cover-title">Image Scan Report</p>
 <div class="cover-rule"></div>
-<p class="cover-sub">{{ repository }}:{{ tag }}</p>
 <p class="cover-sub">{{ scan_date }}</p>
 </div>
 
@@ -34,10 +33,10 @@
 ## Vulnerabilities
 
 {% if vulnerabilities %}
-| CVE ID | Severity | Score (v3) | Package | Version | Fixed In |
-|--------|----------|-----------|---------|---------|----------|
+| CVE ID | Severity | Score (v2) | Score (v3) | Package | Version | Fixed In |
+|--------|----------|-----------|-----------|---------|---------|----------|
 {% for v in vulnerabilities %}
-| {{ v.name }} | {{ v.severity }} | {{ v.score_v3 }} | {{ v.package_name }} | {{ v.package_version }} | {{ v.fixed_version }} |
+| {{ v.name }} | {{ v.severity }} | {{ v.score }} | {{ v.score_v3 }} | {{ v.package_name }} | {{ v.package_version }} | {{ v.fixed_version }} |
 {% endfor %}
 
 ### Details
@@ -45,7 +44,7 @@
 {% for v in vulnerabilities %}
 #### {{ v.name }}
 
-- **Severity**: {{ v.severity }} (CVSS v3: {{ v.score_v3 }})
+- **Severity**: {{ v.severity }} (CVSS v2: {{ v.score }} / v3: {{ v.score_v3 }})
 - **Package**: {{ v.package_name }} `{{ v.package_version }}` → `{{ v.fixed_version }}`
 - **File**: `{{ v.file_name }}`
 - **Reference**: {{ v.link }}
